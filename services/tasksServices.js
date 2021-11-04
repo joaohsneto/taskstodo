@@ -18,8 +18,15 @@ const findTaskById = async (id) => {
   return findById;
 };
 
+// Service para atualizar tarefa
+const updateTask = async ({ task, status }, id) => {
+  await model.updateTask({ task, status }, id);
+  return { id, task, status };
+};
+
 module.exports = {
   createTask,
   findAllTask,
   findTaskById,
+  updateTask,
 };
