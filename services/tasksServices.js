@@ -24,9 +24,16 @@ const updateTask = async ({ task, status }, id) => {
   return { id, task, status };
 };
 
+// Service para deletar tarefa
+const deleteTask = async ({ id }) => {
+  const deletedTask = await model.deleteTask(id);
+  return deletedTask;
+};
+
 module.exports = {
   createTask,
   findAllTask,
   findTaskById,
   updateTask,
+  deleteTask
 };
