@@ -12,7 +12,14 @@ const findAllTask = async () => {
   return findAll;
 };
 
+// Service para pesquisar tarefas por id
+const findTaskById = async (id) => {
+  const findById = await model.findTaskById(id);
+  return findById;
+};
+
 module.exports = {
   createTask,
   findAllTask,
+  findTaskById,
 };
