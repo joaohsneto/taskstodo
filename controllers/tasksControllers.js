@@ -14,7 +14,14 @@ const findAllTask = async (req, res) => {
   return res.status(statusCode.OK).json(findAll);
 };
 
+const findTaskById = async (req, res) => {
+  const { id } = req.params;
+  const findById = await service.findTaskById(id);
+  return res.status(statusCode.OK).json(findById);
+};
+
 module.exports = {
   createTask,
   findAllTask,
+  findTaskById,
 };
