@@ -29,9 +29,17 @@ const updateTask = async ({ task, status }, id) => {
   return { id, task, status };
 };
 
+// Model para deletar tarefa
+const deleteTask = async ({ id }) => {
+  const db = await connect();
+  const deletedTask = await db.collection('tasks').deleteOne(ObjectId(id));
+  return deletedTask;
+};
+
 module.exports = {
   createTask,
   findAllTask,
   findTaskById,
   updateTask,
+  deleteTask,
 };
