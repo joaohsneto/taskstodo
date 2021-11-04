@@ -21,4 +21,7 @@ app.get('/task', controller.findAllTask);
 //Pesquisar tarefas por ID
 app.get('/task/:id', controller.findTaskById);
 
+//Atualizar tarefas
+app.put('/task/:id', controller.updateTask);
+
 app.listen(PORT, () => console.log(`Ouvindo a porta ${PORT}`));
