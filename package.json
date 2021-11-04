@@ -4,7 +4,8 @@
   "description": "CRUD de lista de tarefas para serem feitas",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "debug": "nodemon index.js"
   },
   "repository": {
     "type": "git",
