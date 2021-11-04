@@ -1,3 +1,4 @@
+// Finalizado a configuração do servidor Express
 const express = require('express');
 const bodyParser = require('body-parser');
 const statusCode = require('http-status-codes');
