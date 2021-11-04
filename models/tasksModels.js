@@ -10,7 +10,7 @@ const createTask = async ({ task, status }) => {
 // Model para pesquisar todas as tarefas
 const findAllTask = async () => {
   const db = await connect();
-  const findAll = await db.collection('task').find().toArray();
+  const findAll = await db.collection('tasks').find().toArray();
   return findAll;
 };
 

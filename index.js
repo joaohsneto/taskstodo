@@ -15,4 +15,7 @@ app.get('/', (req, res) => {
 // Criar Tarefas
 app.post('/create', controller.createTask);
 
+//Pesquisar todas as tarefas
+app.get('/task', controller.findAllTask);
+
 app.listen(PORT, () => console.log(`Ouvindo a porta ${PORT}`));

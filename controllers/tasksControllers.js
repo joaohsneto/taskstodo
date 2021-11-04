@@ -8,6 +8,13 @@ const createTask = async (req, res) => {
   return res.status(statusCode.CREATED).json({ _id: id, task, status });
 };
 
+// Controller para pesquisar todas as tarefas
+const findAllTask = async (req, res) => {
+  const findAll = await service.findAllTask();
+  return res.status(statusCode.OK).json(findAll);
+};
+
 module.exports = {
   createTask,
+  findAllTask,
 };
