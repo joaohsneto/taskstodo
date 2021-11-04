@@ -14,14 +14,24 @@ const findAllTask = async (req, res) => {
   return res.status(statusCode.OK).json(findAll);
 };
 
+// Controller para pesquisar tarefa por ID
 const findTaskById = async (req, res) => {
   const { id } = req.params;
   const findById = await service.findTaskById(id);
   return res.status(statusCode.OK).json(findById);
 };
 
+// Controller para atualizar tarefa
+const updateTask = async (req, res) => {
+  const { id } = req.params;
+  const { task, status } = req.body;
+  await service.updateTask({ task, status }, id);
+  res.status(statusCode.OK).json({ _id: id, task, status });
+};
+
 module.exports = {
   createTask,
   findAllTask,
   findTaskById,
+  updateTask
 };
