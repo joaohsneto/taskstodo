@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const statusCode = require('http-status-codes');
-require('dotenv').config();
 
 const PORT = process.env.PORT;
 const app = express();
