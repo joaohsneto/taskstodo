@@ -18,4 +18,7 @@ app.post('/create', controller.createTask);
 //Pesquisar todas as tarefas
 app.get('/task', controller.findAllTask);
 
+//Pesquisar tarefas por ID
+app.get('/task/:id', controller.findTaskById);
+
 app.listen(PORT, () => console.log(`Ouvindo a porta ${PORT}`));
