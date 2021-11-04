@@ -22,8 +22,16 @@ const findTaskById = async (id) => {
   return findById;
 };
 
+// Model para atualizar tarefa
+const updateTask = async ({ task, status }, id) => {
+  const db = await connect();
+  await db.collection('tasks').updateOne({ _id: ObjectId(id) }, { $set: { task, status } });
+  return { id, task, status };
+};
+
 module.exports = {
   createTask,
   findAllTask,
   findTaskById,
+  updateTask,
 };
