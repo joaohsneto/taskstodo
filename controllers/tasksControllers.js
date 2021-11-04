@@ -32,8 +32,8 @@ const updateTask = async (req, res) => {
 // Constroller para deletar tarefa
 const deleteTask = async (req, res) => {
   const { id } = req.params;
-  await service.deleteTask(id);
-  return res.status(statusCode.NO_CONTENT).json();
+  await service.deleteTask({ id });
+  return res.status(statusCode.OK).json({ message: 'Task deleted' });
 };
 
 module.exports = {

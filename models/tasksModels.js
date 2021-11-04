@@ -32,7 +32,7 @@ const updateTask = async ({ task, status }, id) => {
 // Model para deletar tarefa
 const deleteTask = async ({ id }) => {
   const db = await connect();
-  const deletedTask = await db.collection('tasks').deleteOne(ObjectId(id));
+  const deletedTask = await db.collection('tasks').deleteOne({ _id: ObjectId(id) });
   return deletedTask;
 };
 
