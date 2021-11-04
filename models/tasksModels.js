@@ -7,6 +7,14 @@ const createTask = async ({ task, status }) => {
   return { id, task, status };
 };
 
+// Model para pesquisar todas as tarefas
+const findAllTask = async () => {
+  const db = await connect();
+  const findAll = await db.collection('task').find().toArray();
+  return findAll;
+};
+
 module.exports = {
   createTask,
+  findAllTask,
 };
