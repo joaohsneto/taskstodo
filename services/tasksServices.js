@@ -1,7 +1,18 @@
+const { ObjectId } = require('mongodb');
 const model = require('../models/tasksModels');
+const validations = require('../middlewares/fieldsValidations');
+const statusCode = require('http-status-codes');
 
 // Service de criação de tarefas
 const createTask = async ({task, status}) => {
+  const validateFields = await validations.validateTask(task, status);
+  const validateNotNumber = await validations.validateTaskNotNumber(task)
+  if (!validateFields) {
+    return { code: statusCode.UNPROCESSABLE_ENTITY, message: 'task and status is required' };
+  }
+  if (!validateNotNumber) {
+    return { code: statusCode.BAD_REQUEST, message: 'task must have more than 5 characters and must be a string'};
+  }
   const create = await model.createTask({task, status});
   return create;
 };
@@ -14,7 +25,13 @@ const findAllTask = async () => {
 
 // Service para pesquisar tarefas por id
 const findTaskById = async (id) => {
+  if (!ObjectId.isValid(id)) {
+    return { code: statusCode.BAD_REQUEST, message: 'wrong id' };
+  }
   const findById = await model.findTaskById(id);
+  if (!findById) {
+    return { code: statusCode.NOT_FOUND, message: 'task not found' };
+  }
   return findById;
 };
 
@@ -26,6 +43,9 @@ const updateTask = async ({ task, status }, id) => {
 
 // Service para deletar tarefa
 const deleteTask = async ({ id }) => {
+  if (!ObjectId.isValid(id)) {
+    return { code: statusCode.BAD_REQUEST, message: 'wrong id' };
+  }
   const deletedTask = await model.deleteTask({ id });
   return deletedTask;
 };

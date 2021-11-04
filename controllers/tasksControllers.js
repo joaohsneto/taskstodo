@@ -4,7 +4,10 @@ const statusCode = require('http-status-codes');
 // Controller de criação de tarefas
 const createTask = async (req, res) => {
   const { task, status } =  req.body;
-  const { id } = await service.createTask({ task, status });
+  const { code, message, id } = await service.createTask({ task, status });
+  if (message) {
+    res.status(code).json({ message });
+  }
   return res.status(statusCode.CREATED).json({ _id: id, task, status });
 };
 
@@ -18,6 +21,10 @@ const findAllTask = async (req, res) => {
 const findTaskById = async (req, res) => {
   const { id } = req.params;
   const findById = await service.findTaskById(id);
+  const { code, message } = findById;
+  if (message) {
+    return res.status(code).json({ message });
+  }
   return res.status(statusCode.OK).json(findById);
 };
 
@@ -32,7 +39,10 @@ const updateTask = async (req, res) => {
 // Constroller para deletar tarefa
 const deleteTask = async (req, res) => {
   const { id } = req.params;
-  await service.deleteTask({ id });
+  const { code, message } = await service.deleteTask({ id });
+  if (message) {
+    return res.status(code).json({ message });
+  }
   return res.status(statusCode.OK).json({ message: 'Task deleted' });
 };
 
